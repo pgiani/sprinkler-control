@@ -7,7 +7,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: './index.html',
 });
 const Favicon = new FaviconsWebpackPlugin({
-  logo: './src/img/logo.png', // svg works too!
+  logo: './src/assets/img/logo.png', // svg works too!
   mode: 'webapp', // optional can be 'webapp' or 'light' - 'webapp' by default
   devMode: 'webapp', // optional can be 'webapp' or 'light' - 'light' by default
   favicons: {
@@ -30,36 +30,26 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  mode: process.env.NODE_ENV || 'development',
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64]',
-              sourceMap: true,
-              minimize: true,
-            },
-          },
-        ],
+        test: /\.(css|scss)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
+        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+        loaders: ['file-loader'],
       },
     ],
   },
