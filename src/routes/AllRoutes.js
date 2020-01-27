@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-// import Navigation from './components/Navigation';
+import Navigation from '../components/Navigation';
 
 import Home from './Home';
 import Zone from './Zone';
@@ -15,6 +15,7 @@ const MyRoutes = props => {
   const { data } = props;
   return (
     <Router history={myhistory}>
+      <Navigation {...props} data={data} />
       <Switch>
         <Route
           exact
