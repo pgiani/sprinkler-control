@@ -45,14 +45,16 @@ export async function getID(setPersonId, setIsError) {
 export async function get(e) {
   const apiKeys = window.RESOURCES;
   const { rachio } = apiKeys;
-  const { point, personId, set, setIsError } = e;
-
+  const { point, set, setIsError } = e;
+  let { personId } = e;
   // if local storage is available try to retrived the info
   // while we are fething a fresh version of the data
 
   if (typeof Storage !== 'undefined') {
     // retrive the data from store if available
     const storedPoint = window.localStorage.getItem(point);
+
+    personId = window.localStorage.getItem('personId');
     if (storedPoint) {
       // set the data so the UI will have something to show
       // will update when the API fisnish suceffuly
@@ -60,14 +62,16 @@ export async function get(e) {
     }
   }
 
-  if (rachio) {
+  console.log('get', { e, personId });
+
+  if (rachio && personId) {
     return superagent
       .get(`https://api.rach.io/1/public/${point}/${personId}`)
       .set('Authorization', 'Bearer ' + rachio)
       .accept('application/json')
       .then(response => {
         const { body } = response;
-        console.log({ body });
+        console.log('Got Data', { point, body });
         set(body);
         // if local storage is available try to retrived the info
         // while we are fething a fresh version of the data
@@ -83,4 +87,31 @@ export async function get(e) {
   } else {
     setIsError(false);
   }
+}
+
+export async function getZone(id) {
+  console.log('getZone', { id });
+
+  const apiKeys = window.RESOURCES;
+  const { rachio } = apiKeys;
+
+  if (!id) return;
+
+  const res = await superagent
+    .get(`https://api.rach.io/1/public/zone/${id}/`)
+    .set('Authorization', 'Bearer ' + rachio)
+    .accept('application/json')
+    .then(response => {
+      const { body } = response;
+      console.log('Got Zone Data', { response });
+
+      // if local storage is available try to retrived the info
+      // while we are fething a fresh version of the data
+      return body;
+    })
+    .catch(err => {
+      console.error(err);
+      setIsError(err);
+    });
+  return res;
 }

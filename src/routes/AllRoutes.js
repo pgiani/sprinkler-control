@@ -5,8 +5,7 @@ import { createBrowserHistory } from 'history';
 // import Navigation from './components/Navigation';
 
 import Home from './Home';
-import About from './About';
-import Sample from './Sample';
+import Zone from './Zone';
 
 const MyRoutes = props => {
   // you can only create history one
@@ -22,8 +21,7 @@ const MyRoutes = props => {
           path="/"
           render={props => <Home {...props} data={data} />}
         />
-        <Route path="/about" component={About} />
-        <Route path="/sample" component={Sample} />
+        <Route path="/zone" render={props => <Zone {...props} data={data} />} />
       </Switch>
     </Router>
   );

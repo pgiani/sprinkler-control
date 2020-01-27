@@ -94,3 +94,44 @@ body {
     margin-top: 7rem;
   }
 }
+
+.zone_ok {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 255, 0, 0.67);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 255, 0, 0.67);
+  box-shadow: 0px 0px 10px 0px rgba(0, 255, 0, 0.67);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 8px #ea4c89, inset 0 0 8px #ea4c89;
+  }
+  50% {
+    box-shadow: 0 0 16px #ea4c89, inset 0 0 14px #ea4c89;
+  }
+  100% {
+    box-shadow: 0 0 8px #ea4c89, inset 0 0 8px #ea4c89;
+  }
+}
+
+.zone_error {
+  background-color: transparent;
+  width: 140px;
+  height: 140px;
+  border-radius: 50px;
+  box-shadow: 0 0 8px #ea4c89, inset 0 0 8px #ea4c89;
+  -webkit-animation: pulse 2s linear 1s infinite;
+}
+
+.zone_error p {
+  display: block;
+  text-align: center;
+  line-height: 140px;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 24px;
+  color: #ea4c89;
+  text-shadow: 0 0 4px #ea4c89;
+}

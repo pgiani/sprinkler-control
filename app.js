@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
-import MyRoutes from './routes/AllRoutes';
-import Progress from './components/Progress';
-import BackRound from './components/Back_Round';
-import ErrorPage from './components/Error';
-import { getID, get } from './components/racioApi';
+import MyRoutes from './src/routes/AllRoutes';
+import Progress from './src/components/Progress';
+import BackRound from './src/components/Back_Round';
+import ErrorPage from './src/components/Error';
+import { getID, get } from './src/components/racioApi';
 
 export const App = props => {
   const [isLoading, setIsLoading] = useState(true);

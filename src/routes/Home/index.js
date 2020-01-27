@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import _map from 'lodash/map';
-import Zone from './Zone';
+import Device from './Device';
 
 const Home = props => {
   const { data = {} } = props;
@@ -11,8 +11,8 @@ const Home = props => {
       <div className="row">
         {_map(devices, element => {
           const { id } = element;
-          console.log(element);
-          return <Zone key={id} data={element} />;
+
+          return <Device key={id} data={element} />;
         })}
       </div>
     </div>

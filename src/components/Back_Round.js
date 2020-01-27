@@ -4,6 +4,8 @@ import desktopImage from '../assets/images/green-grass-field.jpg';
 import mobileImage from '../assets/images/background_mobile.png';
 
 const BackRound = () => {
+  window.document.body.style.backgroundColor = 'GhostWhite';
+  return null;
   // update image as need it
   const handleWindowResize = () => {
     const imageUrl = window.innerWidth >= 650 ? desktopImage : mobileImage;
