@@ -9,6 +9,9 @@ const SRC_DIRECTORY = path.join(ROOT_DIRECTORY, 'src');
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: path.join(SRC_DIRECTORY, 'index.html'),
+  apiKeys: {
+    rachio: '76980330-8f0b-4659-a341-527364acf134',
+  },
 });
 const copyPlugin = new CopyWebpackPlugin([
   {

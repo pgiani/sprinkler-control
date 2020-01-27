@@ -1,13 +1,19 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect } from 'react';
 
-const Home = () => (
-  <Fragment>
-    <h1>1 React Webpack Babel Starter Kit</h1>
-    <p>
-      Tired of complicated starters with 200MB of dependencies which are hard to
-      understand and modify? This is for you!
-    </p>
-  </Fragment>
-);
+import Zone from '../components/zone';
+
+const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <div className="container marketing">
+      <div className="row">
+        <Zone />
+        <Zone />
+        <Zone />
+      </div>
+    </div>
+  );
+};
 
 export default Home;

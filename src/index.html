@@ -13,15 +13,17 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <!-- Favicons -->
-
-    <meta name="apple-mobile-web-app-title" content="Sprinler Control" />
-    <meta name="application-name" content="Sprinler Control" />
-    <meta name="msapplication-TileColor" content="#2196f3" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- END Favicons -->
-
-    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript">
+      window.RESOURCES = {
+        rachio: '<%= htmlWebpackPlugin.options.apiKeys.rachio %>',
+      };
+    </script>
   </head>
 
   <body>
