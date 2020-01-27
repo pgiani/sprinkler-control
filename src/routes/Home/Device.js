@@ -13,7 +13,7 @@ const Device = props => {
     <div className="col-lg-4">
       <h3>{name}</h3>
       <img
-        className="img-responsive"
+        className={`img-responsive ${status === 'ONLINE' ? '' : 'zone_error'}`}
         src={deviceImage}
         alt="Generic placeholder image"
         width="200"
@@ -40,7 +40,7 @@ const Device = props => {
             }}
           >
             <Button variant="warning" size="sm">
-              <i className="fa fa-ban fa-stack text-danger"></i>
+              <i className="fa fa-ban   text-danger"></i>
               Troubleshot
             </Button>
           </Link>

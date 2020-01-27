@@ -7,7 +7,7 @@ const Home = props => {
   const { devices = [] } = data;
 
   return (
-    <div className="container marketing">
+    <div className="container marketing t30">
       <div className="row">
         {_map(devices, element => {
           const { id } = element;

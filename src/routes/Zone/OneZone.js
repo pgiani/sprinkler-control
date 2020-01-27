@@ -10,7 +10,7 @@ import loadingImage from '../../assets/images/loadingZone.jpg';
 import { getZone } from '../../components/racioApi';
 
 const Zone = props => {
-  const { data = {} } = props;
+  const { data = {}, status } = props;
   const {
     name,
     enabled,
@@ -96,7 +96,7 @@ const Zone = props => {
       </VisibilitySensor>
 
       <p className="t10">
-        {enabled ? (
+        {enabled && status === 'ONLINE' ? (
           <Fragment>
             <p>
               <small class="text-muted">
