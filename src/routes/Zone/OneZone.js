@@ -1,14 +1,11 @@
 import React, { Fragment } from 'react';
 import _truncate from 'lodash/truncate';
-import { Link } from 'react-router-dom';
 import TimeAgo from 'react-timeago';
-import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
+import { Button, OverlayTrigger } from 'react-bootstrap';
 import Img from 'react-image';
 import VisibilitySensor from 'react-visibility-sensor';
 import loadingImage from '../../assets/images/loadingZone.jpg';
-
-import { getZone } from '../../components/racioApi';
-
+import { getPopOver } from './tools';
 const Zone = props => {
   const { data = {}, status } = props;
   const {
@@ -18,51 +15,19 @@ const Zone = props => {
     id,
     lastWateredDate,
     lastWateredDuration,
-    zoneNumber,
-    customCrop = {},
-    rootZoneDepth,
-    availableWater = 0,
   } = data;
-  const { name: cropName } = customCrop;
+
   console.log({ data, lastWateredDate, lastWateredDuration }, 'Zone');
 
-  const minutes = lastWateredDuration;
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  let runningTime = `( ${minutes} min.)`;
-  if (minutes / 60 > 1) runningTime = `( ${hours} hours.)`;
-  if (minutes / 60 / 24 > 1) runningTime = `( ${days} days.)`;
-
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Title as="h3">
-        Status:{' '}
-        {enabled ? (
-          <span className="text-primary"> Enable</span>
-        ) : (
-          <span className="text-danger"> Disable</span>
-        )}
-      </Popover.Title>
-      <Popover.Content>
-        <span>
-          <strong>Zone</strong>: {zoneNumber}
-        </span>
-        <br />
-        <span>
-          <strong>Crop</strong>: {cropName}
-        </span>
-        <br />
-        <span>
-          <strong>Root depth</strong>: {rootZoneDepth}
-        </span>
-        <br />
-        <span>
-          <strong>Available Water</strong>:{' '}
-          {parseFloat(availableWater).toFixed(2)}
-        </span>
-      </Popover.Content>
-    </Popover>
-  );
+  let runningTime = '';
+  if (lastWateredDuration) {
+    const minutes = lastWateredDuration;
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    runningTime = `( ${minutes} min.)`;
+    if (minutes / 60 > 1) runningTime = `( ${hours} hours.)`;
+    if (minutes / 60 / 24 > 1) runningTime = `( ${days} days.)`;
+  }
 
   return (
     <div className="col-lg-4">
@@ -74,7 +39,11 @@ const Zone = props => {
       </h3>
 
       <VisibilitySensor>
-        <OverlayTrigger trigger="hover" placement="botton" overlay={popover}>
+        <OverlayTrigger
+          trigger="hover"
+          placement="bottom"
+          overlay={getPopOver(data)}
+        >
           <Img
             src={imageUrl}
             decode={false}

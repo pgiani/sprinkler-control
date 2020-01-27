@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import _map from 'lodash/map';
 import _sortBy from 'lodash/sortBy';
 import OneZone from './OneZone';
-
+import RunAllZones from './RunAllZonez';
 const Zones = props => {
-  const { location = {}, personId } = props;
+  const { location = {} } = props;
   const { state = {} } = location;
   const { data = {} } = state;
   const { id, zones, status } = data;
@@ -17,6 +18,7 @@ const Zones = props => {
   }
   console.log({ status }, 'Zonessss');
   const sortedZones = _sortBy(zones, ['zoneNumber']);
+
   return (
     <div className="container marketing t30">
       {status === 'OFFLINE' && (
@@ -30,6 +32,9 @@ const Zones = props => {
           <div className="col-lg-4"></div>
         </div>
       )}
+
+      {status === 'ONLINE' && <RunAllZones {...props} />}
+
       <br />
 
       <div className="row">
