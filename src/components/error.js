@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import BackRound from './Backround';
+import BackRound from './Back_Round';
 
 const Zone = props => {
   // TODO get the error message

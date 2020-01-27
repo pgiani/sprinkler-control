@@ -1,15 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
 
-import { createBrowserHistory } from 'history';
-
-// import Navigation from './components/Navigation';
-import Home from './routes/Home';
-import Progress from './components/progress';
-import About from './routes/About';
-import Sample from './routes/Sample';
-import BackRound from './components/BackRound';
-import ErrorPage from './components/error';
+import MyRoutes from './routes/AllRoutes';
+import Progress from './components/Progress';
+import BackRound from './components/Back_Round';
+import ErrorPage from './components/Error';
 import { getID, get } from './components/racioApi';
 
 export const App = props => {
@@ -18,8 +12,6 @@ export const App = props => {
   const [isError, setIsError] = useState(false);
   const [personId, setPersonId] = useState(false);
   const [devices, setDevices] = useState(false);
-
-  console.log('1 Starting');
 
   useEffect(() => {
     // get the persoonID for further API calls
@@ -33,7 +25,6 @@ export const App = props => {
 
     // once we have the ID get the list of devices
     if (personId && !devices) {
-      console.log('--------- Get Info *--------');
       get({ point: 'person', set: setDevices, personId, setIsError });
       setPercentage(75);
     }
@@ -55,19 +46,12 @@ export const App = props => {
       {isLoading ? (
         <Progress percentage={percentage} />
       ) : (
-        <Router history={createBrowserHistory()}>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={Home}
-              devices={devices}
-              personId={personId}
-            />
-            <Route path="/about" component={About} />
-            <Route path="/sample" component={Sample} />
-          </Switch>
-        </Router>
+        <MyRoutes
+          personId={personId}
+          data={devices}
+          personId={personId}
+          {...props}
+        />
       )}
     </Fragment>
   );
