@@ -58,7 +58,7 @@ export async function get(e) {
     if (storedPoint) {
       // set the data so the UI will have something to show
       // will update when the API fisnish suceffuly
-      set(JSON.parse(storedPoint));
+      // set(JSON.parse(storedPoint));
     }
   }
 
@@ -111,27 +111,24 @@ export async function getZone(id) {
   return res;
 }
 
-export async function runZone(id) {
+export async function runMultitpleZones(zones) {
   const apiKeys = window.RESOURCES;
   const { rachio } = apiKeys;
 
-  if (!id) return;
+  if (!zones) return;
 
   const res = await superagent
-    .get(`https://api.rach.io/1/public/zone/${id}/`)
+    .put(`https://api.rach.io/1/public/zone/start_multiple/`)
     .set('Authorization', 'Bearer ' + rachio)
-    .accept('application/json')
+    .send({ zones: zones })
     .then(response => {
       const { body } = response;
+      console.log({ response }, 'response');
 
-      // if local storage is available try to retrived the info
-      // while we are fething a fresh version of the data
       return body;
     })
     .catch(err => {
       console.error(err);
-      setIsError(err);
     });
   return res;
 }
-
