@@ -7,7 +7,7 @@ Web app to control Rachio WiFi sprinkler system
 <div align="center">Auto formatted with Prettier, tested with Cypress 🎗</div>
 
 <h3 align="center">
-  <a href="https://github.com/pgiani/sprinkler-control">Visit the live app</a> |
+  <a href="https://pgiani.github.io/sprinkler-control/">Visit the live app</a> |
   |
   <a href="https://rachio.readme.io/docs">View RAcio API</a>
 </h3>
