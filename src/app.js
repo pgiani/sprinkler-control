@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
-import MyRoutes from './src/routes/AllRoutes';
-import Progress from './src/components/Progress';
-import BackRound from './src/components/Back_Round';
-import ErrorPage from './src/components/Error';
-import { getID, get } from './src/components/racioApi';
+import MyRoutes from './routes/AllRoutes';
+import Progress from './components/Progress';
+import BackRound from './components/Back_Round';
+import ErrorPage from './components/Error';
+import Navigation from './components/Navigation';
+import { getID, get } from './components/racioApi';
 
 export const App = props => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +44,20 @@ export const App = props => {
     <Fragment>
       <BackRound />
       {isLoading ? (
-        <Progress percentage={percentage} />
+        <Fragment>
+          <nav className="site-header sticky-top py-1">
+            <div className="container d-flex flex-column flex-md-row justify-content-between">
+              <div className="py-2 d-none d-md-inline-block"> Devices </div>
+            </div>
+          </nav>
+          <h1 className="text-center t30">
+            Communicating with your devices...
+          </h1>
+
+          <div className=" t30">
+            <Progress percentage={percentage} />
+          </div>
+        </Fragment>
       ) : (
         <MyRoutes
           personId={personId}

@@ -7,8 +7,10 @@ import _sortBy from 'lodash/sortBy';
 import { runMultitpleZones } from '../../components/racioApi';
 
 async function runZones(e, setRunning) {
-  const { zones, time } = e;
+  // chang the button state imedaatly
+  setRunning(true);
 
+  const { zones, time } = e;
   const runZones = [];
   let zoneCounter = 1;
   const runTime = time * 60;
@@ -40,7 +42,6 @@ async function runZones(e, setRunning) {
 
     const { ok } = res;
     if (ok) {
-      setRunning(true);
       Swal.fire({
         icon: 'success',
         title: `Running all zones for ${time} minutes`,
@@ -50,6 +51,8 @@ async function runZones(e, setRunning) {
       setTimeout(() => {
         setRunning(false);
       }, runTime * 1000);
+    } else {
+      setRunning(false);
     }
   }
 }
