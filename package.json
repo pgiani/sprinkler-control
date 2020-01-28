@@ -43,6 +43,7 @@
     "react-timeago": "^4.4.0",
     "react-visibility-sensor": "^5.1.1",
     "superagent": "^5.2.1",
+    "sweetalert2": "^9.7.1",
     "timeago-react": "^3.0.0"
   },
   "devDependencies": {
@@ -85,6 +86,7 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dashboard": "^3.2.0",
+    "favicons-webpack-plugin": "^3.0.0",
     "webpack-dev-server": "^3.10.1"
   }
 }

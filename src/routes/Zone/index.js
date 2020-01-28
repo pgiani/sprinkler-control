@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
+
 import { Button } from 'react-bootstrap';
 import _map from 'lodash/map';
 import _sortBy from 'lodash/sortBy';
 import OneZone from './OneZone';
 import RunAllZones from './RunAllZonez';
+import history from '../history';
+
 const Zones = props => {
   const { location = {} } = props;
   const { state = {} } = location;
@@ -13,7 +15,7 @@ const Zones = props => {
 
   // if there is no Id send it back to home
   if (!id) {
-    useHistory.push('/');
+    history.push('/devices');
     return null;
   }
 

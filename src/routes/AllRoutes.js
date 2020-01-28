@@ -3,14 +3,14 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import Navigation from '../components/Navigation';
-
+import history from './history';
 import Home from './Devices';
 import Zone from './Zone';
 
 const MyRoutes = props => {
   // you can only create history one
   // so put in on useState other wise you get You cannot change <Router routes>; it will be ignored
-  const [myhistory, setMyhistory] = useState(createBrowserHistory());
+  const [myhistory, setMyhistory] = useState(history);
 
   const { data } = props;
   return (

@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import Swal from 'sweetalert2';
 
 // because of the heavy use of the Browser window
 // this fuctiuons need to be refactor if we use SSR
@@ -80,6 +81,11 @@ export async function get(e) {
       })
       .catch(err => {
         console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
         setIsError(err);
       });
   } else {
@@ -106,29 +112,39 @@ export async function getZone(id) {
     })
     .catch(err => {
       console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+      });
       setIsError(err);
     });
   return res;
 }
 
-export async function runMultitpleZones(zones) {
+export function runMultitpleZones(zones) {
   const apiKeys = window.RESOURCES;
   const { rachio } = apiKeys;
 
   if (!zones) return;
+  return new Promise((resolve, reject) => {
+    superagent
+      .put(`https://api.rach.io/1/public/zone/start_multiple/`)
+      .set('Authorization', 'Bearer ' + rachio)
+      .send({ zones: zones })
+      .then(response => {
+        console.log({ response }, 'response');
 
-  const res = await superagent
-    .put(`https://api.rach.io/1/public/zone/start_multiple/`)
-    .set('Authorization', 'Bearer ' + rachio)
-    .send({ zones: zones })
-    .then(response => {
-      const { body } = response;
-      console.log({ response }, 'response');
-
-      return body;
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  return res;
+        resolve(response);
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
+        reject(err);
+      });
+  });
 }
