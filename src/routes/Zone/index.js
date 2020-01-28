@@ -16,7 +16,7 @@ const Zones = props => {
     useHistory.push('/');
     return null;
   }
-  console.log({ status }, 'Zonessss');
+
   const sortedZones = _sortBy(zones, ['zoneNumber']);
 
   return (

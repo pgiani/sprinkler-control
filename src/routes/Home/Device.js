@@ -8,7 +8,6 @@ const Device = props => {
   const { data = {} } = props;
   const { name, zones, status, on, id, model } = data;
 
-  console.log({ data, name, status, model });
   return (
     <div className="col-lg-4">
       <h3>{name}</h3>
@@ -20,7 +19,7 @@ const Device = props => {
         height="140"
       />
 
-      <p>
+      <p className="t15">
         {status === 'ONLINE' ? (
           <Link
             to={{

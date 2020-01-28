@@ -17,8 +17,6 @@ const Zone = props => {
     lastWateredDuration,
   } = data;
 
-  console.log({ data, lastWateredDate, lastWateredDuration }, 'Zone');
-
   let runningTime = '';
   if (lastWateredDuration) {
     const minutes = lastWateredDuration;
@@ -64,11 +62,11 @@ const Zone = props => {
         </OverlayTrigger>
       </VisibilitySensor>
 
-      <p className="t10">
+      <div className="t10">
         {enabled && status === 'ONLINE' ? (
           <Fragment>
             <p>
-              <small class="text-muted">
+              <small className="text-muted">
                 <i
                   className="fa fa-tint text-primary r5"
                   aria-hidden="true"
@@ -85,9 +83,8 @@ const Zone = props => {
           </Fragment>
         ) : (
           <Fragment>
-            {' '}
             <p>
-              <small class="text-muted">
+              <small className="text-muted">
                 <i
                   className="fa fa-tint text-primary r5"
                   aria-hidden="true"
@@ -95,10 +92,9 @@ const Zone = props => {
                 <TimeAgo date={lastWateredDate} minPeriod={30} /> {runningTime}
               </small>
             </p>
-            <p></p>
           </Fragment>
         )}
-      </p>
+      </div>
     </div>
   );
 };

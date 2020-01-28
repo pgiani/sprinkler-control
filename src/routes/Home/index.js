@@ -3,8 +3,9 @@ import _map from 'lodash/map';
 import Device from './Device';
 
 const Home = props => {
-  const { data = {} } = props;
+  const { data = {}, location } = props;
   const { devices = [] } = data;
+  // console.log({ props }, 'Home');
 
   return (
     <div className="container marketing t30">

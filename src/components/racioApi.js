@@ -26,7 +26,7 @@ export async function getID(setPersonId, setIsError) {
       .then(response => {
         const { body } = response;
         const { id } = body;
-        console.log({ id });
+
         setPersonId(id);
         if (typeof Storage !== 'undefined') {
           // Code for localStorage/sessionStorage.
@@ -62,8 +62,6 @@ export async function get(e) {
     }
   }
 
-  console.log('get', { e, personId });
-
   if (rachio && personId) {
     return superagent
       .get(`https://api.rach.io/1/public/${point}/${personId}`)
@@ -71,7 +69,7 @@ export async function get(e) {
       .accept('application/json')
       .then(response => {
         const { body } = response;
-        console.log('Got Data', { point, body });
+
         set(body);
         // if local storage is available try to retrived the info
         // while we are fething a fresh version of the data
@@ -90,8 +88,6 @@ export async function get(e) {
 }
 
 export async function getZone(id) {
-  console.log('getZone', { id });
-
   const apiKeys = window.RESOURCES;
   const { rachio } = apiKeys;
 
@@ -103,7 +99,6 @@ export async function getZone(id) {
     .accept('application/json')
     .then(response => {
       const { body } = response;
-      console.log('Got Zone Data', { response });
 
       // if local storage is available try to retrived the info
       // while we are fething a fresh version of the data

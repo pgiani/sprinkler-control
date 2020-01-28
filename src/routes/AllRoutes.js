@@ -18,11 +18,20 @@ const MyRoutes = props => {
       <Navigation {...props} data={data} />
       <Switch>
         <Route
-          exact
           path="/"
+          exact
           render={props => <Home {...props} data={data} />}
         />
-        <Route path="/zone" render={props => <Zone {...props} data={data} />} />
+        <Route
+          exact
+          path="/devices"
+          render={props => <Home {...props} data={data} />}
+        />
+        <Route
+          exact
+          path="/zone"
+          render={props => <Zone {...props} data={data} />}
+        />
       </Switch>
     </Router>
   );

@@ -1,19 +1,21 @@
-const config = require('./webpack.config.js')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const config = require('./webpack.config.js');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-config.mode = 'production'
+// Try the environment variable, otherwise use root
+
+config.mode = 'production';
 
 config.optimization = {
   splitChunks: {
-    chunks: 'all'
-  }
-}
+    chunks: 'all',
+  },
+};
+(config.output.publicPath = './'),
+  (config.plugins = config.plugins.concat([
+    new UglifyJsPlugin({
+      sourceMap: true,
+      extractComments: true,
+    }),
+  ]));
 
-config.plugins = config.plugins.concat([
-  new UglifyJsPlugin({
-    sourceMap: true,
-    extractComments: true
-  })
-])
-
-module.exports = config
+module.exports = config;
