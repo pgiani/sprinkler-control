@@ -1,7 +1,3 @@
-# sprinkler_control-
-
-Web app to control Rachio WiFi sprinkler system
-
 <h1 align="center">A simplified Sprinkler Controle System using Rachio API </h1>
 
 <div align="center">Auto formatted with Prettier, tested with Cypress 🎗</div>
@@ -23,7 +19,12 @@ This is just a work assignment where I have to:
 
 ## Features
 
-- Proven, scalable, and easy to understand project structure
+- Build using WebPack 4, too sometime to get all configure correctly
+- Use ReactJs Hooks
+- Image caching to improve user experience
+- Cache API responses to again improve user experience
+- Deploy App to GitPages, had to created a diferent WebPack configuration for the deplayment
+- Automates scripts for dev, build, test and deploy
 
 ## Setting up development environment 🛠
 
@@ -32,14 +33,24 @@ This is just a work assignment where I have to:
 - `npm run dev`
 - App should now be running on `http://localhost:8080/`
 
-## tests 🚥
+## Tests 🚥
 
 - change directory to ./sprinkler-control
 - `npm run test`
 
+## Build ⛴
+
+- change directory to ./sprinkler-control
+- `npm run build`
+
+## Deploy to git pages ⛵
+
+- change directory to ./sprinkler-control
+- `npm run deploy`
+
 ## What's missing?
 
-Alot, this was a 4 hour sprint to get some basic API call working
+Every thing pretty much, this was a 4 hour sprint to get some basic API call working
 
 ### Migrations 🗄
 
