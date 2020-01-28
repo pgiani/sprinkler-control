@@ -110,3 +110,28 @@ export async function getZone(id) {
     });
   return res;
 }
+
+export async function runZone(id) {
+  const apiKeys = window.RESOURCES;
+  const { rachio } = apiKeys;
+
+  if (!id) return;
+
+  const res = await superagent
+    .get(`https://api.rach.io/1/public/zone/${id}/`)
+    .set('Authorization', 'Bearer ' + rachio)
+    .accept('application/json')
+    .then(response => {
+      const { body } = response;
+
+      // if local storage is available try to retrived the info
+      // while we are fething a fresh version of the data
+      return body;
+    })
+    .catch(err => {
+      console.error(err);
+      setIsError(err);
+    });
+  return res;
+}
+

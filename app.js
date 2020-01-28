@@ -38,7 +38,6 @@ export const App = props => {
     }
   }, [personId, devices, isLoading]);
 
-  console.log({ personId, devices });
   if (isError) return <ErrorPage error={isError} />;
   return (
     <Fragment>

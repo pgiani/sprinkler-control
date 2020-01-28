@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-import deviceImage from '../../assets/images/device.png';
-
 const Device = props => {
   const { data = {} } = props;
-  const { name, zones, status, on, id, model } = data;
+  const { name, status, id } = data;
 
   return (
     <div className="col-lg-4">
       <h3>{name}</h3>
       <img
         className={`img-responsive ${status === 'ONLINE' ? '' : 'zone_error'}`}
-        src={deviceImage}
+        src={
+          'https://res.cloudinary.com/pablo-giani/image/upload/v1580235798/device_p0ed9i.png'
+        }
         alt="Generic placeholder image"
         width="200"
         height="140"
@@ -24,7 +24,7 @@ const Device = props => {
           <Link
             to={{
               pathname: '/zone',
-              state: { data },
+              state: { data, name, id },
             }}
           >
             <Button variant="secondary" size="sm">
@@ -35,7 +35,7 @@ const Device = props => {
           <Link
             to={{
               pathname: '/zone',
-              state: { data },
+              state: { data, name, id },
             }}
           >
             <Button variant="warning" size="sm">

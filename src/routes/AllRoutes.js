@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 
 import Navigation from '../components/Navigation';
 
-import Home from './Home';
+import Home from './Devices';
 import Zone from './Zone';
 
 const MyRoutes = props => {

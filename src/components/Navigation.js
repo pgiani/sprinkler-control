@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Navigation = props => {
   const { data = {} } = props;
   const { fullName } = data;
-  console.log({ props }, 'Navigation');
+
   return (
     <nav className="site-header sticky-top py-1">
       <div className="container d-flex flex-column flex-md-row justify-content-between">
