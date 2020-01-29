@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from "react";
 
-import MyRoutes from './routes/AllRoutes';
-import Progress from './components/Progress';
-import BackRound from './components/Back_Round';
-import ErrorPage from './components/Error';
-import Navigation from './components/Navigation';
-import { getID, get } from './components/racioApi';
+import MyRoutes from "./routes/AllRoutes";
+import Progress from "./components/Progress";
+import BackRound from "./components/Back_Round";
+import ErrorPage from "./components/Error";
+
+import { getID, get } from "./components/racioApi";
 
 export const App = props => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ export const App = props => {
 
     // once we have the ID get the list of devices
     if (personId && !devices) {
-      get({ point: 'person', set: setDevices, personId, setIsError });
+      get({ point: "person", set: setDevices, personId, setIsError });
       setPercentage(75);
     }
 
@@ -44,27 +44,9 @@ export const App = props => {
     <Fragment>
       <BackRound />
       {isLoading ? (
-        <Fragment>
-          <nav className="site-header sticky-top py-1">
-            <div className="container d-flex flex-column flex-md-row justify-content-between">
-              <div className="py-2 d-none d-md-inline-block"> Devices </div>
-            </div>
-          </nav>
-          <h1 className="text-center t30">
-            Communicating with your devices...
-          </h1>
-
-          <div className=" t30">
-            <Progress percentage={percentage} />
-          </div>
-        </Fragment>
+        <Progress percentage={percentage} />
       ) : (
-        <MyRoutes
-          personId={personId}
-          data={devices}
-          personId={personId}
-          {...props}
-        />
+        <MyRoutes data={devices} {...props} />
       )}
     </Fragment>
   );

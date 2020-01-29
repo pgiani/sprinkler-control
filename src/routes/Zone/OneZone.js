@@ -45,7 +45,7 @@ const Zone = props => {
           <Img
             src={imageUrl}
             decode={false}
-            className={`${enabled ? 'zone_ok' : 'zone_error'} rounded-circle`}
+            className={`${enabled ? 'zone_ok' : 'zone_error'} rounded-circle ZoneBorder`}
             alt={name}
             width="140"
             height="140"

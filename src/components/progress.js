@@ -1,58 +1,72 @@
-import React from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import React, { Fragment } from "react";
 
 const Zone = props => {
   const { percentage } = props;
   return (
-    <div className="container marketing">
-      <div className="row">
-        <div className="col-lg-4"> </div>
-        <div className="col-lg-4">
-          <CircularProgressbar
-            value={percentage}
-            text={`${percentage}%`}
-            styles={{
-              // Customize the root svg element
-              root: {},
-              // Customize the path, i.e. the "completed progress"
-              path: {
-                // Path color
-                stroke: `rgba(62, 152, 199, ${percentage / 100})`,
-                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                strokeLinecap: 'round',
-                // Customize transition animation
-                transition: 'stroke-dashoffset 0.75s ease 0.5s',
-                // Rotate the path
-                // transform: 'rotate(0.25turn)',
-                transformOrigin: 'center center',
-              },
-              // Customize the circle behind the path, i.e. the "total progress"
-              trail: {
-                // Trail color
-                stroke: '#ffffff',
-                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                strokeLinecap: 'flat',
-                // Rotate the trail
-                transform: 'rotate(0.25turn)',
-                transformOrigin: 'center center',
-              },
-              // Customize the text
-              text: {
-                // Text color
-                fill: '#000000',
-                // Text size
-                fontSize: '18px',
-              },
-              // Customize background - only used when the `background` prop is true
-              background: {
-                fill: '#3e98c7',
-              },
-            }}
-          />
+    <Fragment>
+      <nav className="site-header sticky-top py-1">
+        <div className="container d-flex flex-column flex-md-row justify-content-between">
+          <div className="py-2 d-none d-md-inline-block"> Devices </div>
         </div>
-        <div className="col-lg-4"> </div>
+      </nav>
+      <div className="row t30">
+        <div className="col-lg-12">
+          <h1 className="text-center t30 pushText">
+            Communicating with your devices...
+          </h1>
+        </div>
       </div>
-    </div>
+      <div className="container marketing t30">
+        <div className="row">
+          <div className="col-lg-4"> </div>
+          <div className="col-lg-4">
+            <div className="wrap">
+              <div className="drop-outer">
+                <svg
+                  className="drop"
+                  viewBox="0 0 40 40"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="20" cy="20" r="20" />
+                </svg>
+              </div>
+              <div className="ripple ripple-1">
+                <svg
+                  className="ripple-svg"
+                  viewBox="0 0 60 60"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="30" cy="30" r="24" />
+                </svg>
+              </div>
+              <div className="ripple ripple-2">
+                <svg
+                  className="ripple-svg"
+                  viewBox="0 0 60 60"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="30" cy="30" r="24" />
+                </svg>
+              </div>
+              <div className="ripple ripple-3">
+                <svg
+                  className="ripple-svg"
+                  viewBox="0 0 60 60"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="30" cy="30" r="24" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4"> </div>
+        </div>
+      </div>
+    </Fragment>
   );
 };
 
