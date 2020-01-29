@@ -1,6 +1,7 @@
 <h1 align="center">A simplified Sprinkler Control System using Rachio API </h1>
 
-![App screenshot](https://res.cloudinary.com/pablo-giani/image/upload/v1580331736/animation_anlis1.gif)
+![App screenshot]("https://res.cloudinary.com/pablo-giani/image/upload/v1580330508/Screen_Shot_2020-01-29_at_1.41.21_PM_nvesh9.png")
+![App anumation]("https://res.cloudinary.com/pablo-giani/image/upload/v1580331736/animation_anlis1.gif")
 
 ## What is this and who is it for 🤷‍♀️
 
