@@ -1,12 +1,6 @@
 <h1 align="center">A simplified Sprinkler Control System using Rachio API </h1>
 
-<h3 align="center">
-  <a href="https://pgiani.github.io/sprinkler-control/">Visit the live app</a> |
-  |
-  <a href="https://rachio.readme.io/docs">View RAcio API</a>
-</h3>
-
-![App screenshot](https://res.cloudinary.com/pablo-giani/image/upload/v1580254049/Screen_Shot_2020-01-28_at_4.25.28_PM_sq04kj.png)
+![App screenshot](https://res.cloudinary.com/pablo-giani/image/upload/v1580331736/animation_anlis1.gif)
 
 ## What is this and who is it for 🤷‍♀️
 
@@ -49,10 +43,13 @@ This is just a work assignment where I had to:
 - change directory to ./sprinkler-control
 - `npm run build`
 
-## Deploy to git pages ⛵
+## Deploy to GitHub Pages ⛵
 
-- change directory to ./sprinkler-control
-- `npm run deploy`
+The app is deploy to gitPages but there are some issues with react-router and the way GitHub Pages deals with Urls, the app runs but you must click on devices to get it started, I did not had the time to fix the issue. you can see it live by visiting the URL below an clicking on "Devices"
+
+![GitHub Pages screenshot](https://res.cloudinary.com/pablo-giani/image/upload/v1580332317/deviceissues_bsqkpt.gif)
+
+- <a href="https://pgiani.github.io/sprinkler-control/">Visit the live app</a>
 
 ## What's missing?
 

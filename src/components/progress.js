@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
 const Zone = props => {
   const { percentage } = props;
@@ -11,9 +11,9 @@ const Zone = props => {
       </nav>
       <div className="row t30">
         <div className="col-lg-12">
-          <h1 className="text-center t30 pushText">
-            Communicating with your devices...
-          </h1>
+          <h3 className="text-center t30 pushText text-dark">
+            Please wait while we communicating with your devices...
+          </h3>
         </div>
       </div>
       <div className="container marketing t30">

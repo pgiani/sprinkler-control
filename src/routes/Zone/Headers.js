@@ -15,7 +15,7 @@ const Headers = props => {
   return (
     <div className="row t30">
       <div className="col-lg-3">
-        <h2 className="l15">{name}</h2>
+        <h2 className="l15 text-dark">{name}</h2>
       </div>
       <div className="col-lg-5">
         {status === 'OFFLINE' && (

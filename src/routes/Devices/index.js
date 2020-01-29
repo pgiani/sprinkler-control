@@ -13,7 +13,12 @@ const Home = props => {
   const sortedDevices = _sortBy(devices, ['name']);
 
   // work around for Github pages
-  if (pathname !== '/devices') history.push('/devices');
+  console.log(pathname, 'pathname');
+  if (pathname !== '/devices') {
+    setTimeout(() => {
+      history.push('/devices');
+    }, 500);
+  }
 
   return (
     <div className="container marketing t30">

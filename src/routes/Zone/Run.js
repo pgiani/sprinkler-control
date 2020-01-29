@@ -80,11 +80,14 @@ async function runZones(e) {
   }
 }
 
-const OffLine = props => (
-  <Button variant="warning" disabled>
-    <i className="fa fa-ban fa-fw r10"></i>Unavailable
-  </Button>
-);
+const OffLine = props => {
+  const { size = 'lg' } = props;
+  return (
+    <Button variant="warning" size={size} disabled>
+      <i className="fa fa-ban fa-fw r10"></i>Unavailable
+    </Button>
+  );
+};
 
 const RunButton = props => {
   const {
@@ -101,7 +104,7 @@ const RunButton = props => {
 
   const runnig = isRunning({ runningDevices, id });
 
-  if (!status) return <OffLine />;
+  if (!status) return <OffLine size={size} />;
   return (
     <div>
       {runnig ? (

@@ -12,8 +12,8 @@ export function startRunning(e) {
   // using moment so date manipulation is easy to undertand
   // creating a expiration date in x minutes in the future
   const newList = _map(runningDevices, o => {
-    const { id: ID, status } = o;
-    if (status && id === ID) {
+    const { id: ID, status, parent } = o;
+    if (status && (id === ID || parent === id)) {
       o.expiration = moment()
         .add(time, 'm')
         .toDate();

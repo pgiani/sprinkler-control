@@ -57,7 +57,9 @@ const Device = props => {
       : 'https://res.cloudinary.com/pablo-giani/image/upload/v1580327092/device-red_wrrj8m.png';
   return (
     <div className="col-lg-4">
-      <h3>{name}</h3>
+      <h3 className={`${status === 'ONLINE' ? 'text-dark' : 'text-muted'}`}>
+        {name}
+      </h3>
       <Link
         to={{
           pathname: '/zone',

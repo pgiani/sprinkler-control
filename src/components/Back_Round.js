@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 
-import desktopImage from '../assets/images/green-grass-field.jpg';
+// import desktopImage from '../assets/images/green-grass-field.jpg';
+import desktopImage from '../assets/images/blue-sky.jpg';
 import mobileImage from '../assets/images/background_mobile.png';
 
 const BackRound = () => {
-  window.document.body.style.backgroundColor = 'LightGray';
+  window.document.body.style.backgroundColor = 'LightBlue';
+  window.document.body.style.backgroundImage = `url('${desktopImage}')`;
+
   return null;
+
   // update image as need it
   const handleWindowResize = () => {
     const imageUrl = window.innerWidth >= 650 ? desktopImage : mobileImage;

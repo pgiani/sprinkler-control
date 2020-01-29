@@ -30,7 +30,7 @@ const Zone = props => {
 
   return (
     <div className="col-lg-4">
-      <h3>
+      <h3 className="text-dark">
         {_truncate(name, {
           length: 18,
           separator: ' ',
@@ -68,31 +68,18 @@ const Zone = props => {
       <div className="t10">
         {enabled && status === 'ONLINE' ? (
           <Fragment>
-            <p>
-              <small className="text-muted">
-                <i
-                  className="fa fa-tint text-primary r5"
-                  aria-hidden="true"
-                ></i>
-                <TimeAgo date={lastWateredDate} minPeriod={5} />
-                {runningTime}
-              </small>
-            </p>
-
+            <small className="text-dark">
+              <i className="fa fa-tint text-primary r5" aria-hidden="true"></i>
+              <TimeAgo date={lastWateredDate} minPeriod={5} />
+              {runningTime}
+            </small>
             <RunButton {...props} size={'sm'} id={id} />
           </Fragment>
         ) : (
-          <Fragment>
-            <p>
-              <small className="text-muted">
-                <i
-                  className="fa fa-tint text-primary r5"
-                  aria-hidden="true"
-                ></i>
-                <TimeAgo date={lastWateredDate} minPeriod={30} /> {runningTime}
-              </small>
-            </p>
-          </Fragment>
+          <small className="text-dark">
+            <i className="fa fa-tint text-primary r5" aria-hidden="true"></i>
+            <TimeAgo date={lastWateredDate} minPeriod={30} /> {runningTime}
+          </small>
         )}
       </div>
     </div>

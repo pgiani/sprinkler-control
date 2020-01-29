@@ -25,38 +25,38 @@ export function getPopOver(data) {
 
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Title as="h4">
+      <Popover.Title as="h4" className="text-center">
         <strong>Zone</strong>: {zoneNumber} (
         {enabled ? (
           <span className="text-primary"> Enable</span>
         ) : (
           <span className="text-danger"> Disable</span>
         )}{' '}
-        )
+        )  
       </Popover.Title>
       <Popover.Content>
         <span>
-          <strong>Last run</strong>: {moment(lastWateredDate).format('ll')}
+          <small>Last run</small>: {moment(lastWateredDate).format('ll')}
         </span>
         <br />
         {lastWateredDuration && (
           <Fragment>
             <span>
-              <strong>Duration</strong>: {runningTime}
+              <small>Duration</small>: {runningTime}
             </span>
             <br />
           </Fragment>
         )}
         <span>
-          <strong>Crop</strong>: {cropName}
+          <small>Crop</small>: {cropName}
         </span>
         <br />
         <span>
-          <strong>Root depth</strong>: {rootZoneDepth}
+          <small>Root depth</small>: {rootZoneDepth}
         </span>
         <br />
         <span>
-          <strong>Available water</strong>:{' '}
+          <small>Available water</small>:{' '}
           {parseFloat(availableWater).toFixed(2)}
         </span>
       </Popover.Content>
