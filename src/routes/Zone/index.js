@@ -30,7 +30,9 @@ const Zones = props => {
         <div className="row">
           {_map(sortedZones, element => {
             const { id } = element;
-            return <OneZone key={id} data={element} status={status} />;
+            return (
+              <OneZone key={id} {...props} data={element} status={status} />
+            );
           })}
         </div>
       </div>

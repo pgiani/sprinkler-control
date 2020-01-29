@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import {
   Button,
   DropdownButton,
@@ -9,10 +9,13 @@ import {
 } from 'react-bootstrap';
 import TimeAgo from 'react-timeago';
 import _map from 'lodash/map';
+import _head from 'lodash/head';
+import _size from 'lodash/size';
 import _isEmpty from 'lodash/isEmpty';
 import _sortBy from 'lodash/sortBy';
 import _find from 'lodash/find';
-import { runMultitpleZones } from '../../components/racioApi';
+import _filter from 'lodash/filter';
+
 import {
   isRunning,
   startRunning,
@@ -22,23 +25,28 @@ import {
 async function runZones(e) {
   // chang the button state imedaatly
 
-  const { id, zones, time, runningDevices = [], setRunningDevices } = e;
+  const { id, runningDevices, time } = e;
+  const zones = _filter(runningDevices, o => id === o.id || id === o.parent);
+
   const runZones = [];
   let zoneCounter = 1;
-  const runTime = time * 60;
+  let runTime = time * 60;
 
   // not going to run for less them 1 minute
   if (runTime < 60) return;
-
+  // max runtime is 3 hours
+  if (runTime > 10800) runTime = 10800;
   // change the button state before sending the API call, update the UI now
   startRunning(e);
   // run them in the same order is there numbers
   const sortedZones = _sortBy(zones, ['zoneNumber']);
   _map(sortedZones, o => {
-    const { id, enabled, maxRuntime } = o;
+    const { id, status, maxRuntime, parent } = o;
 
     // dont run disable zones, they must be disable for a reason
-    if (!enabled) return;
+    if (!status) return;
+    // dont run the device it self just zones
+    if (!parent) return;
 
     // make sure we dont run it for more then MaxRuntime
     // again must be a reason for this parameter
@@ -53,9 +61,15 @@ async function runZones(e) {
   });
 
   // check to make sure there are valid zones to run
+
   if (!_isEmpty(runZones)) {
     try {
-      // await runMultitpleZones(runZones);
+      if (_size(runZones) > 1) {
+        await runMultitpleZones(runZones);
+      } else {
+        const { id, duration } = _head(runZones);
+        await runOneZone({ id, duration });
+      }
     } catch (err) {
       // stop the timer on API errors
       stopRunning(e);
@@ -73,15 +87,21 @@ const OffLine = props => (
 );
 
 const RunButton = props => {
-  const { location = {}, runningDevices, setRunningDevices } = props;
-  const { state = {} } = location;
-  const { data = {} } = state;
-  const { id, zones, status } = data;
+  const {
+    runningDevices,
+    setRunningDevices,
+    title = '',
+    titleRunning = '...',
+    id,
+    size = 'lg',
+  } = props;
+
+  const thisDeviceUnit = _find(runningDevices, { id });
+  const { status } = thisDeviceUnit;
 
   const runnig = isRunning({ runningDevices, id });
-  console.log({ runnig }, '--- runnig ---');
 
-  if (status === 'OFFLINE') return <OffLine />;
+  if (!status) return <OffLine />;
   return (
     <div>
       {runnig ? (
@@ -98,25 +118,27 @@ const RunButton = props => {
             </Tooltip>
           }
         >
-          <Button variant="success">
-            <i className="fa fa-refresh fa-spin fa-fw r10"></i>Running ...
+          <Button variant="success" size={size}>
+            <i className="fa fa-refresh fa-spin fa-fw r10"></i>
+            {titleRunning}
           </Button>
         </OverlayTrigger>
       ) : (
         <ButtonGroup>
           <DropdownButton
+            size={size}
             as={ButtonGroup}
             title={
               <span>
-                <i className="fa fa-play r10 "></i>Run all
+                <i className="fa fa-play r10 "></i>
+                {title}
               </span>
             }
             id="bg-nested-dropdown"
-            onSelect={e => {
+            onSelect={time => {
               runZones({
                 id,
-                time: e,
-                zones,
+                time,
                 runningDevices,
                 setRunningDevices,
               });

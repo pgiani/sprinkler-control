@@ -48,20 +48,6 @@ export async function get(e) {
   const { rachio } = apiKeys;
   const { point, set, setIsError } = e;
   let { personId } = e;
-  // if local storage is available try to retrived the info
-  // while we are fething a fresh version of the data
-
-  if (typeof Storage !== 'undefined') {
-    // retrive the data from store if available
-    const storedPoint = window.localStorage.getItem(point);
-
-    personId = window.localStorage.getItem('personId');
-    if (storedPoint) {
-      // set the data so the UI will have something to show
-      // will update when the API fisnish suceffuly
-      // set(JSON.parse(storedPoint));
-    }
-  }
 
   if (rachio && personId) {
     return superagent
@@ -71,13 +57,11 @@ export async function get(e) {
       .then(response => {
         const { body } = response;
 
+        console.log(' -----get response----');
         set(body);
+
         // if local storage is available try to retrived the info
         // while we are fething a fresh version of the data
-        if (typeof Storage !== 'undefined') {
-          // save the data on local storage
-          window.localStorage.setItem(point, JSON.stringify(body));
-        }
       })
       .catch(err => {
         console.error(err);
@@ -133,7 +117,34 @@ export function runMultitpleZones(zones) {
       .set('Authorization', 'Bearer ' + rachio)
       .send({ zones: zones })
       .then(response => {
-        console.log({ response }, 'response');
+        //  console.log({ response }, 'response runMultitpleZones');
+
+        resolve(response);
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
+        reject(err);
+      });
+  });
+}
+
+export function runOneZone(zone) {
+  const apiKeys = window.RESOURCES;
+  const { rachio } = apiKeys;
+
+  if (!zone) return;
+  return new Promise((resolve, reject) => {
+    superagent
+      .put(`https://api.rach.io/1/public/zone/start/`)
+      .set('Authorization', 'Bearer ' + rachio)
+      .send(zone)
+      .then(response => {
+        // console.log({ response }, 'response runOneZone');
 
         resolve(response);
       })

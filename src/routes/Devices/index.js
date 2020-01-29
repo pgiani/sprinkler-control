@@ -9,7 +9,7 @@ const Home = props => {
   const { data = {}, location } = props;
   const { devices = [] } = data;
   const { pathname } = location;
-  console.log({ devices }, 'Home');
+
   const sortedDevices = _sortBy(devices, ['name']);
 
   // work around for Github pages
@@ -21,7 +21,7 @@ const Home = props => {
         {_map(sortedDevices, element => {
           const { id } = element;
 
-          return <Device key={id} data={element} />;
+          return <Device {...props} key={id} data={element} />;
         })}
       </div>
     </div>

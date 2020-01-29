@@ -42,15 +42,18 @@ export const App = props => {
             type: 'device',
             expiration: null,
             parent: null,
+            zoneNumber: -1,
           });
           _map(zones, z => {
-            const { enabled, id: zooneId } = z;
+            const { enabled, id: zooneId, zoneNumber, maxRuntime } = z;
             runningList.push({
               status: enabled,
               id: zooneId,
               type: 'zone',
               expiration: null,
               parent: id,
+              zoneNumber,
+              maxRuntime,
             });
           });
         });
@@ -63,7 +66,17 @@ export const App = props => {
   // check timers that expired
   let interval = null;
   interval = setInterval(() => {
-    checkExpiration({ runningDevices, setRunningDevices });
+    if (personId && checkExpiration({ runningDevices, setRunningDevices })) {
+      // if a timer has expired wait to pull changes
+      setTimeout(() => {
+        get({
+          point: 'person',
+          set: setDevices,
+          personId,
+          setIsError,
+        });
+      }, 30 * 1000);
+    }
   }, 10 * 1000);
 
   useEffect(() => {
@@ -72,6 +85,7 @@ export const App = props => {
   }, []);
 
   if (isError) return <ErrorPage error={isError} />;
+
   return (
     <Fragment>
       <BackRound />

@@ -11,7 +11,7 @@ const MyRoutes = props => {
   // you can only create history one
   // so put in on useState other wise you get You cannot change <Router routes>; it will be ignored
   const [myhistory, setMyhistory] = useState(history);
-  console.log(props, 'MyRoutes');
+
   const { data, runningDevices, setRunningDevices } = props;
   return (
     <Router history={myhistory}>
@@ -20,12 +20,16 @@ const MyRoutes = props => {
         <Route
           path="/"
           exact
-          render={props => <Home {...props} data={data} />}
+          render={props => (
+            <Home {...props} runningDevices={runningDevices} data={data} />
+          )}
         />
         <Route
           exact
           path="/devices"
-          render={props => <Home {...props} data={data} />}
+          render={props => (
+            <Home {...props} runningDevices={runningDevices} data={data} />
+          )}
         />
         <Route
           exact

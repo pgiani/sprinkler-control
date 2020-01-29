@@ -10,7 +10,7 @@ const Headers = props => {
   const { location = {} } = props;
   const { state = {} } = location;
   const { data = {} } = state;
-  const { name, status } = data;
+  const { name, status, id } = data;
 
   return (
     <div className="row t30">
@@ -26,7 +26,12 @@ const Headers = props => {
       </div>
       <div className="col-lg-3">
         <div className="pull-right r15">
-          <RunButton {...props} />
+          <RunButton
+            {...props}
+            title={'Run All'}
+            titleRunning={'Running ...'}
+            id={id}
+          />
         </div>
       </div>
     </div>

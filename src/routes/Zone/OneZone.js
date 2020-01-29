@@ -6,6 +6,7 @@ import Img from 'react-image';
 import VisibilitySensor from 'react-visibility-sensor';
 import loadingImage from '../../assets/images/loadingZone.jpg';
 import { getPopOver } from './tools';
+import RunButton from './Run';
 const Zone = props => {
   const { data = {}, status } = props;
   const {
@@ -45,7 +46,9 @@ const Zone = props => {
           <Img
             src={imageUrl}
             decode={false}
-            className={`${enabled ? 'zone_ok' : 'zone_error'} rounded-circle ZoneBorder`}
+            className={`${
+              enabled ? 'zone_ok' : 'zone_error'
+            } rounded-circle ZoneBorder`}
             alt={name}
             width="140"
             height="140"
@@ -71,15 +74,12 @@ const Zone = props => {
                   className="fa fa-tint text-primary r5"
                   aria-hidden="true"
                 ></i>
-                <TimeAgo date={lastWateredDate} minPeriod={30} />
+                <TimeAgo date={lastWateredDate} minPeriod={5} />
                 {runningTime}
               </small>
             </p>
-            <p>
-              <Button variant="primary" size="sm">
-                <i className="fa fa-play  "></i>
-              </Button>
-            </p>
+
+            <RunButton {...props} size={'sm'} id={id} />
           </Fragment>
         ) : (
           <Fragment>

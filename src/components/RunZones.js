@@ -1,7 +1,9 @@
 import _map from 'lodash/map';
-import _isEmpty from 'lodash/isEmpty';
-import _filter from 'lodash/filter';
 import _find from 'lodash/find';
+import _filter from 'lodash/filter';
+import _size from 'lodash/size';
+import _last from 'lodash/last';
+import _sortBy from 'lodash/sortBy';
 import moment from 'moment';
 
 export function startRunning(e) {
@@ -50,6 +52,7 @@ export function checkExpiration(e) {
   });
   // only change state if something has expired
   if (changeDetected) setRunningDevices(newList);
+  return changeDetected;
 }
 
 export function isRunning(e) {
@@ -62,4 +65,19 @@ export function isRunning(e) {
   const isExpired = moment().isSameOrAfter(expiration);
   if (isExpired) return false;
   return expiration;
+}
+export function runningCount(e) {
+  const { id, runningDevices } = e;
+  const zone = _filter(runningDevices, { parent: id });
+  const active = _filter(zone, o => o.expiration);
+  let lastRunning = null;
+  if (_size(active)) {
+    const sortedDevices = _sortBy(active, ['expiration']);
+    if (sortedDevices) lastRunning = _last(sortedDevices).expiration;
+  }
+  return {
+    zones: _size(zone),
+    active: _size(active),
+    lastRunning,
+  };
 }
