@@ -136,14 +136,12 @@ body {
   text-shadow: 0 0 4px #ea4c89;
 }
 
-.ZoneBorder  {
-  border: 4px solid rgb(80, 77, 77);
+.ZoneBorder {
+  border: 4px solid #dcdcdc;
 }
-
 
 /* Water drop loader
 -------------------------------------------------- */
-
 
 .wrap {
   position: absolute;
@@ -193,7 +191,6 @@ body {
   left: -70px;
   perspective: 100;
   transform: rotateX(65deg);
-
 }
 
 .ripple .ripple-svg {
@@ -204,11 +201,11 @@ body {
 }
 
 .ripple .ripple-svg circle {
-   fill: none;
-   z-index: -10;
-   stroke: #2a96ed;
-   stroke-width: 10px;
-   stroke-alignment: inner;
+  fill: none;
+  z-index: -10;
+  stroke: #2a96ed;
+  stroke-width: 10px;
+  stroke-alignment: inner;
 }
 
 .ripple-1 {
@@ -247,41 +244,61 @@ body {
   animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
 }
 
-
-
 @keyframes drop {
   0% {
-    transform: scale3d(0.01,0.01,0.01) translateY(0)
+    transform: scale3d(0.01, 0.01, 0.01) translateY(0);
   }
   10% {
-    transform: scale3d(1,1,1) 
+    transform: scale3d(1, 1, 1);
   }
   44% {
-    transform: scale3d(1,1,1) translateY(200px)
+    transform: scale3d(1, 1, 1) translateY(200px);
   }
   100% {
-    transform: scale3d(1,1,1) translateY(200px)
+    transform: scale3d(1, 1, 1) translateY(200px);
   }
 }
 
 @keyframes fade-in-out {
-  0% {opacity: 0}
-  42% {opacity: 0}
-  52% {opacity: 1}
-  65% {opacity: 1}
-  100% {opacity: 0}
+  0% {
+    opacity: 0;
+  }
+  42% {
+    opacity: 0;
+  }
+  52% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes ripple {
-  0% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
-  42% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
-  100% { transform: rotateX(65deg) scale3d(0.9, 0.9, 0.9) }
+  0% {
+    transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2);
+  }
+  42% {
+    transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2);
+  }
+  100% {
+    transform: rotateX(65deg) scale3d(0.9, 0.9, 0.9);
+  }
 }
 
 @keyframes border {
-  0% { stroke-width: 6px }
-  42% { stroke-width: 6px }
-  100% {stroke-width: 2px }
+  0% {
+    stroke-width: 6px;
+  }
+  42% {
+    stroke-width: 6px;
+  }
+  100% {
+    stroke-width: 2px;
+  }
 }
 
 .pushText {

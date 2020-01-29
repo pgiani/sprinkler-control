@@ -11,8 +11,8 @@ const MyRoutes = props => {
   // you can only create history one
   // so put in on useState other wise you get You cannot change <Router routes>; it will be ignored
   const [myhistory, setMyhistory] = useState(history);
-
-  const { data } = props;
+  console.log(props, 'MyRoutes');
+  const { data, runningDevices, setRunningDevices } = props;
   return (
     <Router history={myhistory}>
       <Navigation {...props} data={data} />
@@ -30,7 +30,13 @@ const MyRoutes = props => {
         <Route
           exact
           path="/zone"
-          render={props => <Zone {...props} data={data} />}
+          render={props => (
+            <Zone
+              {...props}
+              runningDevices={runningDevices}
+              setRunningDevices={setRunningDevices}
+            />
+          )}
         />
       </Switch>
     </Router>

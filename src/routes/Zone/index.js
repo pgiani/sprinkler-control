@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import _map from 'lodash/map';
 import _sortBy from 'lodash/sortBy';
 import OneZone from './OneZone';
-import RunAllZones from './RunAllZonez';
+import Headers from './Headers';
 import history from '../history';
 
 const Zones = props => {
@@ -22,31 +22,19 @@ const Zones = props => {
   const sortedZones = _sortBy(zones, ['zoneNumber']);
 
   return (
-    <div className="container marketing t30">
-      {status === 'OFFLINE' && (
+    <Fragment>
+      <Headers {...props} />
+      <div className="container marketing t30">
+        <br />
+
         <div className="row">
-          <div className="col-lg-8">
-            <h2 className="text-danger">{name}</h2>
-          </div>
-          <div className="col-lg-4">
-            <div className="alert alert-danger" role="alert">
-              This device is off line, some features are disable.
-            </div>{' '}
-          </div>
+          {_map(sortedZones, element => {
+            const { id } = element;
+            return <OneZone key={id} data={element} status={status} />;
+          })}
         </div>
-      )}
-
-      {status === 'ONLINE' && <RunAllZones {...props} />}
-
-      <br />
-
-      <div className="row">
-        {_map(sortedZones, element => {
-          const { id } = element;
-          return <OneZone key={id} data={element} status={status} />;
-        })}
       </div>
-    </div>
+    </Fragment>
   );
 };
 
