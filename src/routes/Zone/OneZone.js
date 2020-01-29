@@ -31,7 +31,7 @@ const Zone = props => {
     <div className="col-lg-4">
       <h3>
         {_truncate(name, {
-          length: 24,
+          length: 18,
           separator: ' ',
         })}
       </h3>

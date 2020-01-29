@@ -1,7 +1,6 @@
-<h1 align="center">A simplified Sprinkler Controle System using Rachio API </h1>
+<h1 align="center">A simplified Sprinkler Control System using Rachio API </h1>
 
-<div align="center">Auto formatted with Prettier, tested with Cypress 🎗</div>
-
+ 
 <h3 align="center">
   <a href="https://pgiani.github.io/sprinkler-control/">Visit the live app</a> |
   |
@@ -12,7 +11,7 @@
 
 ## What is this and who is it for 🤷‍♀️
 
-This is just a work assignment where I have to:
+This is just a work assignment where I had to:
 
 - Create an application without the use of pre-built solutions such as Create React
 - Using Rachio's public API, run all a device's zones or specified zones for a set amount of time
@@ -25,6 +24,12 @@ This is just a work assignment where I have to:
 - Cache API responses to again improve user experience
 - Deploy App to GitPages, had to create a different WebPack configuration for the deployment
 - Automates scripts for dev, build, test and deploy
+
+## Desing Choices
+- Use of time deltas insted of dates when informing the user the Zone was last activated, exemple use Yesterday, an hour ago, etc  instad of 1/27/2020 14:00pm
+- Hit with colors, if a zones is disable or ready to got
+- Cachec images and previus API responses in order to speed page paint
+- Ssome support for mobile, more is need it
 
 ## Setting up development environment 🛠
 
@@ -52,11 +57,10 @@ This is just a work assignment where I have to:
 
 Everything pretty much, this was a 4-hour sprint to get some basic API call working
 
-### Migrations 🗄
 
 ### Proper authentication system 🔐
 
-We currently there is none
+Currently there is none
 
 ### Accessibility ♿
 
